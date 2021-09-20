@@ -1,0 +1,5 @@
+.selectWrap {position: relative; display: inline-block; width: 250px;}
+.selectValue {padding: 10px; border: 1px solid black; cursor: pointer;}
+.selectOptions {position: absolute; width: 100%; background: gray;}
+.selectOption {padding: 10px; color: white; cursor: pointer;}
+.selectOption.selected {background: dimgrey;}
