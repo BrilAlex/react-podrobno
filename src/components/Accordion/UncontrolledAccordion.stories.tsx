@@ -13,5 +13,5 @@ const Template: Story<AccordionPropsType> = (args) => (
 
 export const ChangingMode = Template.bind({});
 ChangingMode.args = {
-    titleValue: "Accordion with useState"
+    titleValue: "Accordion with useReducer"
 }
