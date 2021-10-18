@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from "react";
+import React, {useCallback, useMemo, useState} from "react";
 import {Select, SelectProps} from "../components/Select/Select";
 
 export default {
@@ -61,6 +61,47 @@ export const HelpForReactMemoExample = () => {
         <button onClick={addUser}>Add User</button>
         {counter}
         <Table users={usersForTable}/>
+    </>
+}
+
+type BookPropsType = {
+    books: Array<string>
+    addBook: ()=> void
+}
+
+const Books = (props: BookPropsType) => {
+    console.log("Books rendered");
+    return <div>
+        <button onClick={props.addBook}>Add Book</button>
+        {props.books.map((book,i) => <div key={i}>{book}</div>)}
+    </div>
+}
+
+const BooksTable = React.memo(Books);
+
+export const LikeUseCallbackExample = () => {
+    console.log("LikeUseCallbackExample rendered");
+    const [counter, setCounter] = useState(0);
+    const [books, setBooks] = useState(["React", "JS", "CSS", "HTML"])
+
+    const booksForTable = useMemo(() =>
+        books.filter(u => u.toLowerCase().indexOf("a") > -1), [books]);
+
+    const addBook = () => {
+        console.log(books);
+        setBooks([...books, "Angular " + new Date().getTime()]);
+    }
+
+    //const memorizedAddBookUM = useMemo(() => addBook, [books]);
+    const memorizedAddBookUC = useCallback(() => {
+        console.log(books);
+        setBooks([...books, "Angular " + new Date().getTime()]);
+    }, [books]);
+
+    return <>
+        <button onClick={() => setCounter(counter => counter + 1)}>+</button>
+        {counter}
+        <BooksTable books={booksForTable} addBook={memorizedAddBookUC}/>
     </>
 }
 
