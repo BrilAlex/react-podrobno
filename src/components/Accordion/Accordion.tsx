@@ -1,63 +1,32 @@
 import React from "react";
-import {AccordionItemType} from "../../App";
+
+type AccordionPropsType = {
+  titleValue: string
+  collapsed: boolean
+}
+
+export const Accordion = (props: AccordionPropsType) => {
+  console.log("Accordion rendering");
+  return <div>
+    <AccordionTitle title={props.titleValue}/>
+    {!props.collapsed ? <AccordionBody/> : <></>}
+  </div>;
+}
 
 type AccordionTitlePropsType = {
-    title: string
-    callback: () => void
+  title: string
 }
 
-type AccordionBodyProps = {
-    items: AccordionItemType[]
-    callback: (value: any) => void
+const AccordionTitle = (props: AccordionTitlePropsType) => {
+  console.log("AccordionTitle rendering");
+  return <h3>{props.title}</h3>;
 }
 
-export type AccordionPropsType = {
-    titleValue: string
-    items: AccordionItemType[]
-    collapsed: boolean
-    accordionTitleCallback: (value: boolean) => void
-    accordionItemCallback: (value: any) => void
+const AccordionBody = () => {
+  console.log("AccordionBody rendering");
+  return <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>;
 }
-
-function AccordionTitle(props: AccordionTitlePropsType) {
-    console.log("AccordionTitle rendering");
-    return <h3 onClick={(e) => props.callback()}>
-        {props.title}
-    </h3>;
-}
-
-function AccordionBody(props: AccordionBodyProps) {
-    console.log("AccordionBody rendering");
-    let itemsToRender = props.items.map((i, elIndex) => (
-        <li key={elIndex}
-            onClick={(e) => props.callback(i.value)}
-        >
-            {i.name}
-        </li>
-    ));
-
-    return (
-        <ul>
-            {itemsToRender}
-        </ul>
-    );
-}
-
-function Accordion(props: AccordionPropsType) {
-    console.log("UncontrolledAccordion rendering");
-
-    return (
-        <div>
-            <AccordionTitle
-                title={props.titleValue}
-                callback={() => props.accordionTitleCallback(!props.collapsed)}
-            />
-            {!props.collapsed && <AccordionBody
-                items={props.items}
-                callback={props.accordionItemCallback}
-            />}
-        </div>
-    );
-}
-
-export default Accordion;
