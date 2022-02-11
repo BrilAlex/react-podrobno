@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {Accordion} from "./components/Accordion/Accordion";
 import {Rating} from "./components/Rating/Rating";
-import {OnOff} from "./OnOff/OnOff";
+import {OnOff} from "./components/OnOff/OnOff";
 
 function App() {
   console.log("App rendering");
