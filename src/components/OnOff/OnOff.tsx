@@ -1,25 +1,37 @@
 import styles from "./OnOff.module.css";
+import {useState} from "react";
 
-type OnOffPropsType = {
-  isOn: boolean
-}
+export const OnOff = () => {
+  console.log("OnOff rendering");
+  const [isOn, setIsOn] = useState<boolean>(false);
+  console.log("isOn: " + isOn);
 
-export const OnOff = (props: OnOffPropsType) => {
-  const getOnButtonClassName = () => {
-    return `${styles.button} ${props.isOn && styles.onActive}`;
+  const onStyle = {
+    background: isOn ? "green" : "white",
   };
-  const getOffButtonClassName = () => {
-    return `${styles.button} ${!props.isOn && styles.offActive}`;
+  const offStyle = {
+    marginLeft: "5px",
+    background: isOn ? "white" : "red",
   };
-  const getIndicatorClassName = () => {
-    return `${styles.indicator} ${props.isOn && styles.on}`;
+  const indicatorStyle = {
+    display: "inline-block",
+    width: "10px",
+    height: "10px",
+    marginLeft: "5px",
+    background: isOn ? "green" : "red",
+    border: "1px solid black",
+    borderRadius: "5px",
   };
 
   return (
-    <div className={styles.switcher}>
-      <div className={getOnButtonClassName()}>On</div>
-      <div className={getOffButtonClassName()}>Off</div>
-      <div className={getIndicatorClassName()}></div>
+    <div>
+      <div onClick={() => setIsOn(true)} className={styles.switch} style={onStyle}>
+        On
+      </div>
+      <div onClick={() => setIsOn(false)} className={styles.switch} style={offStyle}>
+        Off
+      </div>
+      <div style={indicatorStyle}></div>
     </div>
   );
 };

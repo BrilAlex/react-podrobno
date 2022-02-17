@@ -1,31 +1,5 @@
-.switcher {
-    display: grid;
-    grid-template-columns: 50px 50px 15px;
-    align-items: center;
-}
-
-.button {
-    padding: 5px;
-    text-align: center;
+.switch {
+    display: inline-block;
+    padding: 5px 10px;
     border: 1px solid black;
-}
-
-.onActive {
-    background: green;
-}
-
-.offActive {
-    background: red;
-}
-
-.indicator {
-    width: 10px;
-    height: 10px;
-    background: red;
-    border: 1px solid black;
-    border-radius: 5px;
-}
-
-.indicator.on {
-    background: green;
 }
