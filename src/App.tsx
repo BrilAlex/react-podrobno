@@ -9,7 +9,7 @@ import {UncontrolledRating} from "./components/UncontrolledRating/UncontrolledRa
 function App() {
   console.log("App rendering");
   return (
-    <div>
+    <div className={"appWrapper"}>
       <PageTitle title={"Rating"}/>
       <Rating value={3}/>
       <Rating value={4}/>

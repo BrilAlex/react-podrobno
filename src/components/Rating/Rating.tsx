@@ -1,5 +1,14 @@
 import React from "react";
 
+type StarPropsType = {
+  selected: boolean
+}
+
+const Star = (props: StarPropsType) => {
+  console.log("Star rendering");
+  return <span>{props.selected ? <b> Star</b> : " Star"}</span>
+}
+
 type RatingPropsType = {
   value: 0 | 1 | 2 | 3 | 4 | 5
 };
@@ -15,17 +24,4 @@ export const Rating = (props: RatingPropsType) => {
       <Star selected={props.value > 4}/>
     </div>
   );
-}
-
-type StarPropsType = {
-  selected: boolean
-}
-
-const Star = (props: StarPropsType) => {
-  console.log("Star rendering");
-  if (props.selected) {
-    return <span><b>Star </b></span>;
-  } else {
-    return <span>Star </span>;
-  }
 }
