@@ -1,7 +1,11 @@
 import styles from "./UncontrolledOnOff.module.css";
 import {useState} from "react";
 
-export const UncontrolledOnOff = () => {
+type UncontrolledOnOffPropsType = {
+  setIsOnValue: (isOnValue: boolean) => void
+};
+
+export const UncontrolledOnOff = (props: UncontrolledOnOffPropsType) => {
   console.log("OnOff rendering");
   const [isOn, setIsOn] = useState<boolean>(false);
   console.log("isOn: " + isOn);
@@ -17,12 +21,25 @@ export const UncontrolledOnOff = () => {
     background: isOn ? "green" : "red",
   };
 
+  const onClickHandler = (isOnValue: boolean) => {
+    setIsOn(isOnValue);
+    props.setIsOnValue(isOnValue);
+  };
+
   return (
     <div>
-      <div onClick={() => setIsOn(true)} className={styles.switch} style={onStyle}>
+      <div
+        onClick={() => onClickHandler(true)}
+        className={styles.switch}
+        style={onStyle}
+      >
         On
       </div>
-      <div onClick={() => setIsOn(false)} className={styles.switch} style={offStyle}>
+      <div
+        onClick={() => onClickHandler(false)}
+        className={styles.switch}
+        style={offStyle}
+      >
         Off
       </div>
       <div className={styles.indicator} style={indicatorStyle}/>

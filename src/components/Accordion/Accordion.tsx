@@ -3,16 +3,13 @@ import React from "react";
 type AccordionPropsType = {
   titleValue: string
   collapsed: boolean
-  setCollapsed: (collapsedValue: boolean) => void
+  setCollapsed: () => void
 }
 
 export const Accordion = (props: AccordionPropsType) => {
   console.log("Accordion rendering");
   return <div>
-    <AccordionTitle
-      title={props.titleValue}
-      callback={() => props.setCollapsed(!props.collapsed)}
-    />
+    <AccordionTitle title={props.titleValue} callback={props.setCollapsed}/>
     {!props.collapsed && <AccordionBody/>}
   </div>;
 }

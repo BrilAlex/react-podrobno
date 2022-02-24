@@ -30,7 +30,7 @@ function App() {
       <Accordion
         titleValue={"Users"}
         collapsed={collapsedValue}
-        setCollapsed={setCollapsedValue}
+        setCollapsed={() => setCollapsedValue(!collapsedValue)}
       />
 
       <PageTitle title={"Uncontrolled Accordion"}/>
@@ -40,7 +40,8 @@ function App() {
       <OnOff isOn={isOn} setIsOn={setIsOn}/>
 
       <PageTitle title={"Uncontrolled OnOff"}/>
-      <UncontrolledOnOff/>
+      <UncontrolledOnOff setIsOnValue={setIsOn}/>
+      Controlled OnOff value: {isOn.toString()}
     </div>
   );
 }
