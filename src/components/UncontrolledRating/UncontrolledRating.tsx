@@ -8,7 +8,7 @@ type StarPropsType = {
 const Star = (props: StarPropsType) => {
   console.log("Uncontrolled Star rendering");
   return (
-    <span onClick={() => props.callback()}>
+    <span onClick={props.callback}>
       {props.selected ? <b> Star</b> : " Star"}
     </span>
   );
@@ -18,15 +18,15 @@ type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5;
 
 export const UncontrolledRating = () => {
   console.log("Uncontrolled Rating rendering");
-  const [ratingValue, setRatingValue] = useState<RatingValueType>(0);
+  const [value, setValue] = useState<RatingValueType>(0);
 
   return (
     <div>
-      <Star selected={ratingValue > 0} callback={() => setRatingValue(1)}/>
-      <Star selected={ratingValue > 1} callback={() => setRatingValue(2)}/>
-      <Star selected={ratingValue > 2} callback={() => setRatingValue(3)}/>
-      <Star selected={ratingValue > 3} callback={() => setRatingValue(4)}/>
-      <Star selected={ratingValue > 4} callback={() => setRatingValue(5)}/>
+      <Star selected={value > 0} callback={() => setValue(1)}/>
+      <Star selected={value > 1} callback={() => setValue(2)}/>
+      <Star selected={value > 2} callback={() => setValue(3)}/>
+      <Star selected={value > 3} callback={() => setValue(4)}/>
+      <Star selected={value > 4} callback={() => setValue(5)}/>
     </div>
   );
 }
