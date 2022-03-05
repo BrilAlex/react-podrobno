@@ -24,7 +24,7 @@ function App() {
       />
 
       <PageTitle title={"Uncontrolled Rating"}/>
-      <UncontrolledRating/>
+      <UncontrolledRating setRatingValue={setRatingValue}/>
 
       <PageTitle title={"Accordion"}/>
       <Accordion

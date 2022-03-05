@@ -2,12 +2,13 @@ import styles from "./UncontrolledOnOff.module.css";
 import {useState} from "react";
 
 export type UncontrolledOnOffPropsType = {
+  defaultIsOn?: boolean
   setIsOnValue: (isOnValue: boolean) => void
 };
 
 export const UncontrolledOnOff = (props: UncontrolledOnOffPropsType) => {
   console.log("OnOff rendering");
-  const [isOn, setIsOn] = useState<boolean>(false);
+  const [isOn, setIsOn] = useState<boolean>(props.defaultIsOn ? props.defaultIsOn : false);
   console.log("isOn: " + isOn);
 
   const onStyle = {

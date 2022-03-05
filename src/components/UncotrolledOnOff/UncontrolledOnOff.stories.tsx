@@ -14,5 +14,6 @@ const Template: Story<UncontrolledOnOffPropsType> = (args) =>
 
 export const OnOffChanges = Template.bind({});
 OnOffChanges.args = {
+  defaultIsOn: true,
   setIsOnValue: actionCallback,
 };
