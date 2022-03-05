@@ -19,7 +19,7 @@ const AccordionBody = () => {
   </ul>;
 }
 
-type UncontrolledAccordionPropsType = {
+export type UncontrolledAccordionPropsType = {
   titleValue: string
 }
 

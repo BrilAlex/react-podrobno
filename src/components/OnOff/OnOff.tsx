@@ -1,6 +1,6 @@
 import styles from "./OnOff.module.css";
 
-type OnOffPropsType = {
+export type OnOffPropsType = {
   isOn: boolean
   setIsOn: (isOnValue: boolean) => void
 };

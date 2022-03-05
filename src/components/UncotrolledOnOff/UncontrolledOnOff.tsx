@@ -1,7 +1,7 @@
 import styles from "./UncontrolledOnOff.module.css";
 import {useState} from "react";
 
-type UncontrolledOnOffPropsType = {
+export type UncontrolledOnOffPropsType = {
   setIsOnValue: (isOnValue: boolean) => void
 };
 

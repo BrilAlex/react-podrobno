@@ -16,7 +16,7 @@ const Star = (props: StarPropsType) => {
   );
 }
 
-type RatingPropsType = {
+export type RatingPropsType = {
   value: RatingValueType
   setRatingValue: (ratingValue: RatingValueType) => void
 };
