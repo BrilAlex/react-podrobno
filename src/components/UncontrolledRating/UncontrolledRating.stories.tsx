@@ -5,6 +5,9 @@ import {action} from "@storybook/addon-actions";
 export default {
   title: "Components/Uncontrolled Rating",
   component: UncontrolledRating,
+  argsType: {
+    starColor: {control: "color"},
+  },
 };
 
 const actionCallBack = action("Rating changed");

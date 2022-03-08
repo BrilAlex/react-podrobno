@@ -7,6 +7,9 @@ import {action} from "@storybook/addon-actions";
 export default {
   title: "Components/Rating",
   component: Rating,
+  argsType: {
+    starColor: {control: "color"},
+  },
 };
 
 const actionCallback = action("Rating changed");
