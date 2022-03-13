@@ -9,6 +9,18 @@ import {UncontrolledOnOff} from "./components/UncotrolledOnOff/UncontrolledOnOff
 
 export type RatingValueType = 0 | 1 | 2 | 3 | 4 | 5;
 
+const accordionItems = [
+  {value: 1, title: "HTML"},
+  {value: 2, title: "CSS"},
+  {value: 3, title: "JavaScript"},
+  {value: 4, title: "TypeScript"},
+  {value: 5, title: "React"},
+];
+
+const accordionItemCallback = (value: any) => {
+  console.log(`Item with value ${value} was clicked`);
+};
+
 function App() {
   console.log("App rendering");
   const [ratingValue, setRatingValue] = useState<RatingValueType>(0);
@@ -28,9 +40,11 @@ function App() {
 
       <PageTitle title={"Accordion"}/>
       <Accordion
-        titleValue={"Users"}
+        titleValue={"What to learn"}
         collapsed={collapsedValue}
         setCollapsed={() => setCollapsedValue(!collapsedValue)}
+        items={accordionItems}
+        onItemClick={accordionItemCallback}
       />
 
       <PageTitle title={"Uncontrolled Accordion"}/>

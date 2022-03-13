@@ -1,0 +1,21 @@
+.selectContainer {
+    width: 150px;
+}
+
+.selected {
+    padding: 5px 10px;
+    border: 1px solid #333333;
+}
+
+.options {
+    /*display: none;*/
+    border: 1px solid #333333;
+}
+
+.option {
+    padding: 5px 10px;
+}
+
+.option:hover {
+    background: cadetblue;
+}
