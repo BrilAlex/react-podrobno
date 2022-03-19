@@ -1,5 +1,5 @@
+import {useState, KeyboardEvent, useEffect} from "react";
 import s from "./Select.module.css";
-import {useState} from "react";
 
 type ItemType = {
   value: any
@@ -7,40 +7,70 @@ type ItemType = {
 };
 
 export type SelectPropsType = {
-  value: string
+  value?: any
   setValue: (value: any) => void
   options: ItemType[]
 };
 
 export const Select = (props: SelectPropsType) => {
-  const [expanded, setExpanded] = useState<boolean>(false);
+  const [active, setActive] = useState<boolean>(false);
+  const [hoveredOptionValue, setHoveredOptionValue] = useState(props.value);
 
-  const onClickHandler = () => {
-    setExpanded(!expanded);
+  const selectedOption = props.options.find(o => o.value === props.value);
+  const hoveredOption = props.options.find(o => o.value === hoveredOptionValue);
+  const selectHeading = selectedOption ? selectedOption.title : "Select an option";
+
+  useEffect(() => {
+    setHoveredOptionValue(props.value);
+  }, [props.value]);
+
+  const toggleOptions = () => setActive(!active);
+  const onOptionClick = (value: any) => {
+    props.setValue(value);
+    toggleOptions();
   };
+  const onKeyUp = (e: KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "ArrowUp" || e.key === "ArrowDown") {
+      for (let i = 0; i < props.options.length; i++) {
+        if (props.options[i].value === hoveredOptionValue) {
+          const optionToSelect = e.key === "ArrowDown"
+            ? props.options[i + 1]
+            : props.options[i - 1];
+          if (optionToSelect) {
+            props.setValue(optionToSelect.value);
+            return;
+          }
+        }
+      }
+      if (!selectedOption) {
+        props.setValue(props.options[0].value);
+      }
+    }
 
-  const changeOption = (value: string) => {
-    const optionTitle = props.options.find(o => o.value === value);
-    if (optionTitle) {
-      props.setValue(optionTitle.title);
-      setExpanded(false);
+    if (e.key === "Enter" || e.key === "Escape") {
+      setActive(false);
     }
   };
 
   return (
-    <div className={s.selectContainer}>
-      <div onClick={onClickHandler} className={s.selected}>{props.value}</div>
-      {expanded &&
-      <div className={s.options}>
-        {props.options.map((o, i) => {
-          const onClickHandler = () => {
-            changeOption(o.value);
-          };
-          return (
-            <div key={i} className={s.option} onClick={onClickHandler}>{o.title}</div>
-          );
-        })}
+    <div className={s.select} onKeyUp={onKeyUp} tabIndex={0}>
+      <div className={s.selectedOption} onClick={toggleOptions}>
+        {selectHeading}
       </div>
+      {
+        active &&
+        <div className={s.options}>
+          {props.options.map((o, i) =>
+            <div
+              key={i}
+              className={`${s.option}${o === hoveredOption ? " " + s.selected : ""}`}
+              onClick={() => onOptionClick(o.value)}
+              onMouseEnter={() => setHoveredOptionValue(o.value)}
+            >
+              {o.title}
+            </div>
+          )}
+        </div>
       }
     </div>
   );

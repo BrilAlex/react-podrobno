@@ -12,47 +12,47 @@ export default {
   },
 };
 
-const actionCallback = action("Rating changed");
+const callbackAction = action("Rating changed");
 
 const Template: Story<RatingPropsType> = (args) => <Rating {...args}/>;
 
-export const Rating0Stars = Template.bind({});
-Rating0Stars.args = {
+export const Stars0 = Template.bind({});
+Stars0.args = {
   value: 0,
-  setRatingValue: actionCallback,
+  setRatingValue: callbackAction,
 };
 
-export const Rating1Star = Template.bind({});
-Rating1Star.args = {
+export const Stars1 = Template.bind({});
+Stars1.args = {
   value: 1,
-  setRatingValue: actionCallback,
+  setRatingValue: callbackAction,
 };
 
-export const Rating2Stars = Template.bind({});
-Rating2Stars.args = {
+export const Stars2 = Template.bind({});
+Stars2.args = {
   value: 2,
-  setRatingValue: actionCallback,
+  setRatingValue: callbackAction,
 };
 
-export const Rating3Stars = Template.bind({});
-Rating3Stars.args = {
+export const Stars3 = Template.bind({});
+Stars3.args = {
   value: 3,
-  setRatingValue: actionCallback,
+  setRatingValue: callbackAction,
 };
 
-export const Rating4Stars = Template.bind({});
-Rating4Stars.args = {
+export const Stars4 = Template.bind({});
+Stars4.args = {
   value: 4,
-  setRatingValue: actionCallback,
+  setRatingValue: callbackAction,
 };
 
-export const Rating5Stars = Template.bind({});
-Rating5Stars.args = {
+export const Stars5 = Template.bind({});
+Stars5.args = {
   value: 5,
-  setRatingValue: actionCallback,
+  setRatingValue: callbackAction,
 };
 
-export const RatingChanges: Story<RatingPropsType> = (args) => {
+export const ChangesValue: Story<RatingPropsType> = (args) => {
   const [value,setValue] = useState<RatingValueType>(0);
   return <Rating {...args} value={value} setRatingValue={setValue}/>;
 };

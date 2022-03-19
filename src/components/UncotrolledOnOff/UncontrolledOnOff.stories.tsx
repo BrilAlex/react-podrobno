@@ -7,13 +7,13 @@ export default {
   component: UncontrolledOnOff,
 };
 
-const actionCallback = action("Mode changed");
+const callbackAction = action("Mode changed");
 
 const Template: Story<UncontrolledOnOffPropsType> = (args) =>
   <UncontrolledOnOff {...args}/>;
 
-export const OnOffChanges = Template.bind({});
-OnOffChanges.args = {
+export const ModeChanges = Template.bind({});
+ModeChanges.args = {
   defaultIsOn: true,
-  setIsOnValue: actionCallback,
+  setIsOnValue: callbackAction,
 };

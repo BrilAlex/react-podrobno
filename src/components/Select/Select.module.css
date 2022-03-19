@@ -1,14 +1,16 @@
-.selectContainer {
+.select {
     width: 150px;
 }
 
-.selected {
+.selectedOption {
+    display:inline-block;
     padding: 5px 10px;
     border: 1px solid #333333;
+    cursor: pointer;
 }
 
 .options {
-    /*display: none;*/
+    position: absolute;
     border: 1px solid #333333;
 }
 
@@ -16,6 +18,10 @@
     padding: 5px 10px;
 }
 
-.option:hover {
+.option.selected {
     background: cadetblue;
+}
+
+.option:hover {
+    cursor: pointer;
 }

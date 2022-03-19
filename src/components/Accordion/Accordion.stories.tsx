@@ -8,24 +8,28 @@ export default {
   component: Accordion,
 };
 
-const actionCallback = action("Mode changed");
+const callbackAction = action("Mode changed");
 
-const Template: Story<AccordionPropsType> = (args) => <Accordion {...args}/>;
-
-export const AccordionCollapsed = Template.bind({});
-AccordionCollapsed.args = {
-  titleValue: "Menu",
-  collapsed: true,
-  setCollapsed: actionCallback,
-  items: [],
+const callbackActions = {
+  setCollapsed: callbackAction,
   onItemClick: action("Item was clicked"),
 };
 
-export const AccordionNotCollapsed = Template.bind({});
-AccordionNotCollapsed.args = {
+const Template: Story<AccordionPropsType> = (args) => <Accordion {...args}/>;
+
+export const Collapsed = Template.bind({});
+Collapsed.args = {
+  ...callbackActions,
+  titleValue: "Menu",
+  collapsed: true,
+  items: [],
+};
+
+export const NotCollapsed = Template.bind({});
+NotCollapsed.args = {
+  ...callbackActions,
   titleValue: "What to Learn",
   collapsed: false,
-  setCollapsed: actionCallback,
   items: [
     {value: 1, title: "HTML"},
     {value: 2, title: "CSS"},
@@ -33,10 +37,9 @@ AccordionNotCollapsed.args = {
     {value: 4, title: "TypeScript"},
     {value: 5, title: "React"},
   ],
-  onItemClick: action("Item was clicked"),
 };
 
-export const AccordionChanges: Story<AccordionPropsType> = (args) => {
+export const ModeChanges: Story<AccordionPropsType> = (args) => {
   const [collapsed, setCollapsed] = useState(false);
 
   const accordionItemCallback = (value: any) => {
@@ -52,7 +55,7 @@ export const AccordionChanges: Story<AccordionPropsType> = (args) => {
     />
   );
 };
-AccordionChanges.args = {
+ModeChanges.args = {
   titleValue: "Click Me",
   items: [
     {value: 1, title: "HTML"},

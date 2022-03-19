@@ -8,23 +8,23 @@ export default {
   component: OnOff,
 };
 
-const actionCallback = action("Mode changed");
+const callbackAction = action("Mode changed");
 
 const Template: Story<OnOffPropsType> = (args) => <OnOff {...args}/>;
 
 export const OnMode = Template.bind({});
 OnMode.args = {
   isOn: true,
-  setIsOn: actionCallback,
+  setIsOn: callbackAction,
 };
 
 export const OffMode = Template.bind({});
 OffMode.args = {
   isOn: false,
-  setIsOn: actionCallback,
+  setIsOn: callbackAction,
 };
 
-export const OnOffChanges: Story<OnOffPropsType> = (args) => {
+export const ModeChanges: Story<OnOffPropsType> = (args) => {
   const [isOn,setIsOn] = useState(false);
   return <OnOff {...args} isOn={isOn} setIsOn={setIsOn}/>;
 };

@@ -9,7 +9,7 @@ export default {
 const Template: Story<UncontrolledAccordionPropsType> = (args) =>
   <UncontrolledAccordion {...args}/>;
 
-export const AccordionChanges = Template.bind({});
-AccordionChanges.args = {
+export const ModeChanges = Template.bind({});
+ModeChanges.args = {
   titleValue: "Click Me",
 };
