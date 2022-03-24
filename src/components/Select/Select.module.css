@@ -1,9 +1,9 @@
 .select {
+    position: relative;
     width: 150px;
 }
 
 .selectedOption {
-    display:inline-block;
     padding: 5px 10px;
     border: 1px solid #333333;
     cursor: pointer;
@@ -11,11 +11,15 @@
 
 .options {
     position: absolute;
+    z-index: 1;
+    width: 100%;
     border: 1px solid #333333;
+    box-sizing: border-box;
 }
 
 .option {
     padding: 5px 10px;
+    background: lightgray;
 }
 
 .option.selected {

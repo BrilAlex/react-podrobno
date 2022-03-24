@@ -80,8 +80,9 @@ export const ReactMemoWithUseMemoExample: Story = () => {
 };
 
 type CityType = {
+  id: number
   countryCode: string
-  city: string
+  cityTitle: string
   population: number
 }
 
@@ -89,7 +90,7 @@ const CustomSelect = (props: { cities: CityType[] }) => {
   console.log("CustomSelect rendering");
 
   const [value, setValue] = useState("");
-  const options = props.cities.map(o => ({value: o.countryCode, title: o.city}));
+  const options = props.cities.map(o => ({value: o.id, title: o.cityTitle}));
 
   return (
     <Select value={value} setValue={setValue} options={options}/>
@@ -102,20 +103,20 @@ export const CustomSelectWithUseMemoExample: Story = () => {
   console.log("CustomSelectWithUseMemoExample rendering");
 
   const [count, setCount] = useState<number>(0);
-  const [cities, setCities] = useState([
-    {countryCode: "BY", city: "Minsk", population: 2000000},
-    {countryCode: "BY", city: "Brest", population: 500000},
-    {countryCode: "UK", city: "London", population: 8900000},
-    {countryCode: "US", city: "Washington, D.C.", population: 7600000},
-    {countryCode: "US", city: "Los Angeles", population: 3900000},
-    {countryCode: "UA", city: "Kiev", population: 3000000},
-    {countryCode: "UA", city: "Lvov", population: 900000},
+  const [cities, setCities] = useState<CityType[]>([
+    {id: 1, countryCode: "BY", cityTitle: "Minsk", population: 2000000},
+    {id: 2, countryCode: "BY", cityTitle: "Brest", population: 500000},
+    {id: 3, countryCode: "UK", cityTitle: "London", population: 8900000},
+    {id: 4, countryCode: "US", cityTitle: "Washington, D.C.", population: 7600000},
+    {id: 5, countryCode: "US", cityTitle: "Los Angeles", population: 3900000},
+    {id: 6, countryCode: "UA", cityTitle: "Kiev", population: 3000000},
+    {id: 7, countryCode: "UA", cityTitle: "Lvov", population: 900000},
   ]);
 
   const citiesFromBy =
     useMemo(() => cities.filter(c => c.countryCode === "BY"), [cities]);
   const citiesWithLInTitle =
-    useMemo(() => cities.filter(c => c.city.toLowerCase().indexOf("l") > -1), [cities]);
+    useMemo(() => cities.filter(c => c.cityTitle.toLowerCase().indexOf("l") > -1), [cities]);
   const citiesWith5Millions =
     useMemo(() => cities.filter(c => c.population > 5000000), [cities]);
 
@@ -124,7 +125,15 @@ export const CustomSelectWithUseMemoExample: Story = () => {
   };
 
   const addCity = () => {
-    const newCity = {countryCode: "DE", city: "Berlin", population: 3700000};
+    const newID = cities.length + 1;
+    const newRandomCity = [
+      {countryCode: "DE", cityTitle: "Berlin", population: 3700000},
+      {countryCode: "BY", cityTitle: "Lida", population: 105000},
+      {countryCode: "FR", cityTitle: "Paris", population: 2100000},
+      {countryCode: "IT", cityTitle: "Rome", population: 2900000},
+      {countryCode: "PT", cityTitle: "Lisbon", population: 500000},
+    ][Math.floor(Math.random()*4)];
+    const newCity = {id: newID, ...newRandomCity};
     setCities([...cities, newCity]);
   };
 

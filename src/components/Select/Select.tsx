@@ -14,17 +14,18 @@ export type SelectPropsType = {
 
 export const Select = (props: SelectPropsType) => {
   const [active, setActive] = useState<boolean>(false);
-  const [hoveredOptionValue, setHoveredOptionValue] = useState(props.value);
+  const [hoveredOptionValue, setHoveredOptionValue] = useState<any>(props.value);
 
   const selectedOption = props.options.find(o => o.value === props.value);
   const hoveredOption = props.options.find(o => o.value === hoveredOptionValue);
-  const selectHeading = selectedOption ? selectedOption.title : "Select an option";
+  const selectHeading = selectedOption ? selectedOption.title : "- Select an option -";
 
   useEffect(() => {
     setHoveredOptionValue(props.value);
   }, [props.value]);
 
   const toggleOptions = () => setActive(!active);
+  const onSelectBlur = () => setActive(false);
   const onOptionClick = (value: any) => {
     props.setValue(value);
     toggleOptions();
@@ -53,7 +54,7 @@ export const Select = (props: SelectPropsType) => {
   };
 
   return (
-    <div className={s.select} onKeyUp={onKeyUp} tabIndex={0}>
+    <div className={s.select} onKeyUp={onKeyUp} onBlur={onSelectBlur} tabIndex={0}>
       <div className={s.selectedOption} onClick={toggleOptions}>
         {selectHeading}
       </div>
