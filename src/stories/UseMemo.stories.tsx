@@ -4,7 +4,7 @@ import {useMemo, useState} from "react";
 import {Select} from "../components/Select/Select";
 
 export default {
-  title: "Hooks/useMemo"
+  title: "Hooks/useMemo",
 };
 
 export const DifficultCountingExample: Story = () => {
