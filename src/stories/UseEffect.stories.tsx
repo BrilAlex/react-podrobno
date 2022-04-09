@@ -22,9 +22,67 @@ export const UseEffectExample: Story = () => {
 
   return (
     <div>
-      Hello, {counter1}, {counter2}
+      Hello, Counter1 - {counter1}, Counter2 - {counter2}
       <button onClick={() => setCounter1(counter1 + 1)}>inc counter1</button>
       <button onClick={() => setCounter2(counter2 + 1)}>inc counter2</button>
+    </div>
+  );
+};
+
+export const UseEffectWithSetTimeoutExample: Story = () => {
+  console.log("useEffect With setTimeout Example");
+  const [counter1, setCounter1] = useState(1);
+  const [counter2, setCounter2] = useState(1);
+
+  useEffect(() => {
+    console.log("useEffect fired.");
+    setTimeout(() => {
+      console.log("Five seconds passed. Counter1 value: " + counter1);
+    }, 5000);
+  }, [counter1]);
+
+  return (
+    <div>
+      Counter1 - {counter1}, Counter2 - {counter2}
+      <button onClick={() => setCounter1(counter1 + 1)}>inc counter1</button>
+      <button onClick={() => setCounter2(counter2 + 1)}>inc counter2</button>
+    </div>
+  );
+};
+
+export const UseEffectWithSetIntervalExample: Story = () => {
+  console.log("useEffect With setInterval Example");
+  const [counter, setCounter] = useState(1);
+
+  useEffect(() => {
+    console.log("useEffect fired.");
+    setInterval(() => {
+      console.log("Counter value: " + counter);
+      setCounter(state => state + 1);
+    }, 1000);
+  }, []);
+
+  return (
+    <div>
+      Counter - {counter}
+    </div>
+  );
+};
+
+export const UseEffectClockExample: Story = () => {
+  console.log("useEffect Clock Example");
+  const [time, setTime] = useState<string>();
+
+  useEffect(() => {
+    console.log("useEffect fired.");
+    setInterval(() => {
+      setTime(state => new Date().toLocaleTimeString());
+    }, 1000);
+  }, []);
+
+  return (
+    <div>
+      Current time - {time}
     </div>
   );
 };
