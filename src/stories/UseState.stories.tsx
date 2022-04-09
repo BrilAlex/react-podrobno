@@ -2,7 +2,7 @@ import {Story} from "@storybook/react";
 import {useState} from "react";
 
 export default {
-  title: "Hooks/useState"
+  title: "Hooks/useState",
 }
 
 function generateData() {
