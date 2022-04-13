@@ -76,7 +76,7 @@ export const UseEffectClockExample: Story = () => {
   useEffect(() => {
     console.log("useEffect fired.");
     setInterval(() => {
-      setTime(state => new Date().toLocaleTimeString());
+      setTime(new Date().toLocaleTimeString());
     }, 1000);
   }, []);
 
