@@ -36,9 +36,13 @@ export const UseEffectWithSetTimeoutExample: Story = () => {
 
   useEffect(() => {
     console.log("useEffect fired.");
-    setTimeout(() => {
+    const timeout_ID = setTimeout(() => {
       console.log("Five seconds passed. Counter1 value: " + counter1);
     }, 5000);
+
+    return () => {
+      clearTimeout(timeout_ID);
+    };
   }, [counter1]);
 
   return (
@@ -56,10 +60,14 @@ export const UseEffectWithSetIntervalExample: Story = () => {
 
   useEffect(() => {
     console.log("useEffect fired.");
-    setInterval(() => {
+    const interval_ID = setInterval(() => {
       console.log("Counter value: " + counter);
       setCounter(state => state + 1);
     }, 1000);
+
+    return () => {
+      clearInterval(interval_ID);
+    };
   }, []);
 
   return (
@@ -75,14 +83,85 @@ export const UseEffectClockExample: Story = () => {
 
   useEffect(() => {
     console.log("useEffect fired.");
-    setInterval(() => {
+    const interval_ID = setInterval(() => {
       setTime(new Date().toLocaleTimeString());
     }, 1000);
+
+    return () => {
+      clearInterval(interval_ID);
+    };
   }, []);
 
   return (
     <div>
       Current time - {time}
+    </div>
+  );
+};
+
+export const ResetEffectExample: Story = () => {
+  const [counter, setCounter] = useState(1);
+  console.log("Component rendered. Counter value: " + counter);
+
+  useEffect(() => {
+    console.log("Effect occurred. Counter value: " + counter);
+    return () => {
+      console.log("Effect was reset. Counter value: " + counter);
+    };
+  }, [counter]);
+
+  const increase = () => setCounter(counter + 1);
+
+  return (
+    <div>
+      Hello, counter: {counter}
+      <button onClick={increase}>+</button>
+    </div>
+  );
+};
+
+export const KeysTrackerExample: Story = () => {
+  const [text, setText] = useState("");
+  console.log("Component rendered. Text value: " + text);
+
+  useEffect(() => {
+    const keypressHandler = (e: KeyboardEvent) => {
+      console.log("Typed text: " + text + e.key);
+      setText(text + e.key);
+    };
+
+    window.addEventListener("keypress", keypressHandler);
+
+    return () => {
+      window.removeEventListener("keypress", keypressHandler);
+    };
+  }, [text]);
+
+  return (
+    <div>
+      Typed text: {text}
+    </div>
+  );
+};
+
+export const SetTimeoutExample: Story = () => {
+  const [text, setText] = useState("");
+  console.log("Component rendered. Text value: " + text);
+
+  useEffect(() => {
+    const timeout_ID = setTimeout(() => {
+      console.log("Timeout expired");
+      setText("3 seconds passed");
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeout_ID);
+    };
+  }, [text]);
+
+  return (
+    <div>
+      Typed text: {text}
     </div>
   );
 };
